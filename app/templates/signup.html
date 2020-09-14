@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+Sign Up
+{% endblock page_title %}
+
+{% block content %}
+<h2>Sign Up</h2>
+<form action="{{ url_for('site.signup') }}" method="POST">
+  <input type="text" name="name" placeholder="Enter your name" max="20" required>
+  <input type="email" name="email" placeholder="Enter your email" max="50" required>
+  <input type="password" name="password" placeholder="Choose a password" max="24" required>
+  <button>Sign Up</button>
+</form>
+{% endblock content %}

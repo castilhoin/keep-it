@@ -1,6 +1,8 @@
 from app.ext.db import db
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = "users"
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
@@ -10,4 +12,7 @@ class User(db.Model):
     def __init__(self, name, email, password):
         self.name = name
         self.email = email
-        self.password = password
+        self.password = generate_password_hash(password)
+
+    def verify_password(self, pwd):
+        return check_password_hash(self.password, pwd)
