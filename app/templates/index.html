@@ -9,5 +9,10 @@ Dashboard
   <h2>Dashboard</h2>
   <p>Hi, {{ current_user.name }}</p>
   <a href="{{ url_for('site.logout') }}">Logout</a>
+  <ul>
+  {% for notebook in notebooks %}
+    <li>{{ notebook.name }}</li>
+  {% endfor %}
+  </ul>
 </section>
 {% endblock content %}

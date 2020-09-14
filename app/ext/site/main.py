@@ -1,14 +1,15 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_user, logout_user, current_user
 from app.ext.db import db
-from app.ext.db.models import User
+from app.ext.db.models import User, Notebook, Note
 
 bp = Blueprint("site", __name__)
 
 @bp.route("/", methods=["GET"])
 def index():
     if current_user.is_authenticated:
-        return render_template("index.html")
+        notebooks = Notebook.query.filter_by(user_id=current_user.id)
+        return render_template("index.html", notebooks=notebooks)
     else:
         return redirect(url_for("site.login"))
 
