@@ -16,19 +16,4 @@ Dashboard
     <p></p>
   </div>
 </section>
-<aside class="sidebar">
-  <nav class="sidebar-nav">
-    <div class="sidebar-heading">Your Notebooks</div>
-    <ul class="nav-list">
-      {% for notebook in notebooks %}
-        <li class="list-item" onMouseOver="this.style.borderLeft='5px solid {{ notebook.color }}'" onMouseOut="this.style.borderLeft='5px solid var(--default-theme-white)'">
-          <a href="#">{{ notebook.name }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </nav>
-  <div class="add-notebook-btn">
-    <a href="#">+ New Notebook</a>
-  </div>
-</aside>
 {% endblock content %}
