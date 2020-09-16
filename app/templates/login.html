@@ -5,10 +5,21 @@ Login
 {% endblock page_title %}
 
 {% block content %}
-<h2>Login</h2>
-<form action="{{ url_for('site.login') }}" method="POST">
-  <input type="email" name="email" placeholder="Enter your email" max="50" required>
-  <input type="password" name="password" placeholder="Enter your password" max="24" required>
-  <button>Login</button>
-</form>
+<section class="section-auth">
+  <div class="auth-box">
+    <h1>Login</h1>
+    <form action="{{ url_for('site.login') }}" method="POST">
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" class="validate" max="50" required autofocus>
+      </div>
+      <div class="form-field">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" class="validate" max="24" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="{{ url_for('site.signup') }}">Sign Up</a>.</p>
+  </div>
+</section>
 {% endblock content %}

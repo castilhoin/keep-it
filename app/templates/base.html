@@ -23,7 +23,11 @@
         </label>
       {% else %}
         <div class="login-btn">
-          <a href="{{ url_for('site.login') }}">Login</a>
+          {% if request.endpoint == 'site.login' %}
+            <a href="{{ url_for('site.signup') }}">Sign Up</a>
+          {% else %}
+            <a href="{{ url_for('site.login') }}">Login</a>
+          {% endif %}
         </div>
       {% endif %}
     </div>

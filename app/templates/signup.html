@@ -5,11 +5,25 @@ Sign Up
 {% endblock page_title %}
 
 {% block content %}
-<h2>Sign Up</h2>
-<form action="{{ url_for('site.signup') }}" method="POST">
-  <input type="text" name="name" placeholder="Enter your name" max="20" required>
-  <input type="email" name="email" placeholder="Enter your email" max="50" required>
-  <input type="password" name="password" placeholder="Choose a password" max="24" required>
-  <button>Sign Up</button>
-</form>
+<section class="section-auth">
+  <div class="auth-box">
+    <h1>Sign Up</h1>
+    <form action="{{ url_for('site.signup') }}" method="POST">
+      <div class="form-field">
+        <label for="name">Name</label>
+        <input id="name" type="text" name="name" max="20" required autofocus>
+      </div>
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" class="validate" max="50" required>
+      </div>
+      <div class="form-field">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" max="24" required>
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="{{ url_for('site.login') }}">Login</a>.</p>
+  </div>
+</section>
 {% endblock content %}

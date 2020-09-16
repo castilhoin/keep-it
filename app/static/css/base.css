@@ -1,7 +1,8 @@
 :root {
   --default-theme-primary: #009688;
   --default-theme-primary-dark: #00675B;
-  --default-theme-secondary: #BF360C;
+  --default-theme-secondary: #D84315;
+  --default-theme-secondary-medium: #FF7043;
   --default-theme-secondary-light: #FFAB91;
   --default-theme-text-light: #FAFAFA;
   --default-theme-text-medium: #9E9E9E;
@@ -16,6 +17,7 @@ body {
   background: var(--default-theme-gray-1);
   font-size: 12px;
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  color: var(--default-theme-text-dark);
 }
 .container {
   margin: 0 auto;
@@ -25,4 +27,7 @@ body {
   .container {
     padding: 0 4em;
   }
+}
+.form-field {
+  padding: 0.8em 0;
 }

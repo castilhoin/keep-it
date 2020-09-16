@@ -86,11 +86,70 @@
 .header .login-btn a:hover {
   background: var(--default-theme-primary-dark);
 }
+h1 {
+  font-size: 3em;
+  font-weight: bold;
+  padding: 0 0 0.5em 0;
+}
 .section-notes {
-  width: 100vw;
   min-height: 100vh;
   padding-top: 8em;
   z-index: 1;
+}
+.section-auth {
+  min-height: 100vh;
+  padding-top: 8em;
+}
+.section-auth .auth-box {
+  width: 40vw;
+  min-width: 300px;
+  background: var(--default-theme-white);
+  margin: 0 auto;
+  margin-bottom: 2em;
+  padding: 1.2em 1.5em;
+  border-radius: 5px;
+  box-shadow: 0 0 6px var(--default-theme-text-medium);
+}
+.section-auth .auth-box label {
+  width: 100%;
+  display: block;
+  color: var(--default-theme-gray-4);
+  margin-bottom: 3px;
+}
+.section-auth .auth-box input {
+  width: 100%;
+  display: block;
+  padding: 0.5em;
+  border: 1px solid var(--default-theme-gray-3);
+  color: var(--default-theme-text-dark);
+  border-radius: 5px;
+}
+.section-auth .auth-box input:focus {
+  color: var(--default-theme-text-dark);
+  border: 1px solid var(--default-theme-primary);
+}
+.section-auth .auth-box button {
+  background: var(--default-theme-secondary-light);
+  color: var(--default-theme-secondary);
+  border: 0;
+  border-radius: 5px;
+  display: block;
+  padding: 0.8em 1.5em;
+  margin: 0.8em 0;
+  cursor: pointer;
+  transition: .5s ease-in-out;
+}
+.section-auth .auth-box button:hover {
+  background: var(--default-theme-secondary-medium);
+  color: var(--default-theme-white);
+}
+.section-auth .auth-box a {
+  color: var(--default-theme-text-dark);
+  text-decoration: none;
+}
+.section-auth .auth-box a:hover {
+  color: var(--default-theme-gray-4);
+  text-decoration: underline;
 }
 .sidebar {
   width: 30vw;
