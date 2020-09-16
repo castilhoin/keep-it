@@ -1,9 +1,12 @@
 :root {
   --default-theme-primary: #009688;
   --default-theme-primary-dark: #00675B;
-  --default-theme-secondary: #FF8A65;
+  --default-theme-secondary: #BF360C;
+  --default-theme-secondary-light: #FFAB91;
   --default-theme-text-light: #FAFAFA;
-  --default-theme-text-dark: #37474F;
+  --default-theme-text-medium: #9E9E9E;
+  --default-theme-text-dark: #424242;
+  --default-theme-white: #FFFFFF;
   --default-theme-gray-1: #EEEEEE;
   --default-theme-gray-2: #e0e0e0;
   --default-theme-gray-3: #BCBCBC;
@@ -15,6 +18,11 @@ body {
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 .container {
-  width: 90%;
   margin: 0 auto;
+  padding: 0 2em;
+}
+@media only screen and (min-width: 600px) {
+  .container {
+    padding: 0 4em;
+  }
 }

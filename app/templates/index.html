@@ -5,14 +5,30 @@ Dashboard
 {% endblock page_title %}
 
 {% block content %}
-<section>
-  <h2>Dashboard</h2>
-  <p>Hi, {{ current_user.name }}</p>
-  <a href="{{ url_for('site.logout') }}">Logout</a>
-  <ul>
-  {% for notebook in notebooks %}
-    <li>{{ notebook.name }}</li>
-  {% endfor %}
-  </ul>
+<section class="section-notes">
+  <div class="section-notes-content container">
+    <h1>Hi, {{ current_user.name }}!</h1>
+    {% if notebooks %}
+      <p>Choose a notebook to see your notes or create a new one.</p>
+    {% else %}
+      <p>Start creating your notebooks!</p>
+    {% endif %}
+    <p></p>
+  </div>
 </section>
+<aside class="sidebar">
+  <nav class="sidebar-nav">
+    <div class="sidebar-heading">Your Notebooks</div>
+    <ul class="nav-list">
+      {% for notebook in notebooks %}
+        <li class="list-item" onMouseOver="this.style.borderLeft='5px solid {{ notebook.color }}'" onMouseOut="this.style.borderLeft='5px solid var(--default-theme-white)'">
+          <a href="#">{{ notebook.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+  <div class="add-notebook-btn">
+    <a href="#">+ New Notebook</a>
+  </div>
+</aside>
 {% endblock content %}
