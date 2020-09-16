@@ -3,18 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="../static/css/base.css">
+  <link rel="stylesheet" href="../static/css/style.css">
   <title>{% block page_title %}{% endblock page_title %} | Keep It</title>
 </head>
 <body>
-  <header>
-    <h1>Keep It</h1>
-    <ul>
-      <li><a href="{{ url_for('site.index') }}">Home</a></li>
-      <li><a href="{{ url_for('site.signup') }}">Sign Up</a></li>
-      <li><a href="{{ url_for('site.login') }}">Login</a></li>
-    </ul>
+  <input type="checkbox" id="nav-btn-checkbox" class="nav-btn-checkbox">
+  <header class="header">
+    <div class="header-content container">
+      <div class="header-brand">
+        <a href="{{ url_for('site.index') }}">Keep It</a>
+      </div>
+      {% if current_user.is_authenticated %}
+        <label for="nav-btn-checkbox" class="nav-btn">
+          <span class="btn-hamburger"></span>
+        </label>
+      {% else %}
+        <div class="login-btn">
+          <a href="{{ url_for('site.login') }}">Login</a>
+        </div>
+      {% endif %}
+    </div>
   </header>
+  <section class="content container">
   {% block content %}
   {% endblock content %}
+  </section>
 </body>
 </html>
