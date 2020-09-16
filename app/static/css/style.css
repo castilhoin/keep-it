@@ -91,17 +91,21 @@ h1 {
   font-weight: bold;
   padding: 0 0 0.5em 0;
 }
+.section-content,
+.section-notes,
+.sidebar {
+  padding-top: 8em;
+}
 .section-notes {
   min-height: 100vh;
-  padding-top: 8em;
   z-index: 1;
 }
-.section-auth {
+.section-content {
   min-height: 100vh;
-  padding-top: 8em;
 }
-.section-auth .auth-box {
+.section-content .auth-box {
   width: 40vw;
+  max-width: 450px;
   min-width: 300px;
   background: var(--default-theme-white);
   margin: 0 auto;
@@ -110,13 +114,13 @@ h1 {
   border-radius: 5px;
   box-shadow: 0 0 6px var(--default-theme-text-medium);
 }
-.section-auth .auth-box label {
+.section-content .auth-box label {
   width: 100%;
   display: block;
   color: var(--default-theme-gray-4);
   margin-bottom: 3px;
 }
-.section-auth .auth-box input {
+.section-content .auth-box input {
   width: 100%;
   display: block;
   padding: 0.5em;
@@ -124,11 +128,11 @@ h1 {
   color: var(--default-theme-text-dark);
   border-radius: 5px;
 }
-.section-auth .auth-box input:focus {
+.section-content .auth-box input:focus {
   color: var(--default-theme-text-dark);
   border: 1px solid var(--default-theme-primary);
 }
-.section-auth .auth-box button {
+.section-content .auth-box button {
   background: var(--default-theme-secondary-light);
   color: var(--default-theme-secondary);
   border: 0;
@@ -139,15 +143,15 @@ h1 {
   cursor: pointer;
   transition: .5s ease-in-out;
 }
-.section-auth .auth-box button:hover {
+.section-content .auth-box button:hover {
   background: var(--default-theme-secondary-medium);
   color: var(--default-theme-white);
 }
-.section-auth .auth-box a {
+.section-content .auth-box a {
   color: var(--default-theme-text-dark);
   text-decoration: none;
 }
-.section-auth .auth-box a:hover {
+.section-content .auth-box a:hover {
   color: var(--default-theme-gray-4);
   text-decoration: underline;
 }
@@ -159,7 +163,6 @@ h1 {
   top: 0;
   right: -290px;
   background: var(--default-theme-white);
-  padding-top: 8em;
   box-shadow: 0 0 8px var(--default-theme-text-medium);
   z-index: 3;
   transition: right .8s ease-in-out;
