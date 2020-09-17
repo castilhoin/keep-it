@@ -73,3 +73,45 @@ def list_notes(notebook):
         return render_template("error.html", message="Sorry, you don't have permission to access this resource")
     else:
         return redirect(url_for("site.login"))
+
+@bp.route("/notebook/new", methods=["GET", "POST"])
+def new_notebook():
+    if current_user.is_authenticated:
+        if request.method == "POST":
+            name = request.form["name"]
+            if not name:
+                return render_template("error.html", message="Please, insert a name for your notebook")
+            color = request.form["color"]
+            if not color:
+                return render_template("error.html", message="Please, choose a color for your notebook")
+            new_notebook = Notebook(name, color, current_user.id)
+            db.session.add(new_notebook)
+            db.session.commit()
+            return redirect(url_for("site.index"))
+        else:
+            notebooks = Notebook.query.filter_by(user_id=current_user.id)
+            return render_template("notebook/new.html", notebooks=notebooks)
+    else:
+        return redirect(url_for("site.login"))
+
+@bp.route("/<int:notebook>/edit", methods=["GET", "POST"])
+def edit_notebook(notebook):
+    if current_user.is_authenticated:
+        if request.method == "POST":
+            name = request.form["name"]
+            if not name:
+                return render_template("error.html", message="Please, insert a name for your notebook")
+            color = request.form["color"]
+            if not color:
+                return render_template("error.html", message="Please, choose a color for your notebook")
+            edit_notebook = Notebook.query.filter_by(id=notebook).first()
+            edit_notebook.name = name
+            edit_notebook.color = color
+            db.session.commit()
+            return redirect(url_for("site.index"))
+        else:
+            notebooks = Notebook.query.filter_by(user_id=current_user.id)
+            current_notebook = Notebook.query.filter_by(id=notebook).first()
+            return render_template("notebook/edit.html", notebooks=notebooks, current_notebook=current_notebook)
+    else:
+        return redirect(url_for("site.login"))

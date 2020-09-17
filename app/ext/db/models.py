@@ -25,6 +25,11 @@ class Notebook(db.Model):
     color = db.Column(db.String(10), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
+    def __init__(self, name, color, user_id):
+        self.name = name
+        self.color = color
+        self.user_id = user_id
+
 class Note(db.Model):
     __tablename__ = "notes"
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)

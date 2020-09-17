@@ -5,15 +5,16 @@ Dashboard
 {% endblock page_title %}
 
 {% block content %}
-<section class="section-home">
+<section class="section-content">
   <div class="container">
     <h1>Hi, {{ current_user.name }}!</h1>
-    {% if notebooks %}
-      <p>Choose a notebook to see your notes or create a new one.</p>
-    {% else %}
-      <p>Start creating your notebooks!</p>
-    {% endif %}
-    <p></p>
+    <div class="content-text">
+      {% if notebooks %}
+        <p>Choose a notebook to see your notes or create a new one.</p>
+      {% else %}
+        <p>Start creating your notebooks!</p>
+      {% endif %}
+    </div>
   </div>
 </section>
 {% endblock content %}

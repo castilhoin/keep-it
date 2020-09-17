@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+Edit Notebook: {{ current_notebook.name }}
+{% endblock page_title %}
+
+{% block content %}
+<section class="section-content">
+  <div class="container">
+    <h1>Edit Notebook: {{ current_notebook.name }}</h1>
+    <form action="{{ url_for('site.edit_notebook', notebook=current_notebook.id) }}" method="POST">
+      <div class="form-field">
+        <label for="name">Name</label>
+        <input id="name" type="text" name="name" value="{{ current_notebook.name }}" max="20" required autofocus>
+      </div>
+      <div class="form-field">
+        <label for="color">Color</label>
+        <input id="color" type="color" name="color" value="{{ current_notebook.color }}" required>
+      </div>
+      <button type="submit">Save Notebook</button>
+    </form>
+  </div>
+</section>
+{% endblock content %}
