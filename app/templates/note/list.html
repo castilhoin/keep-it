@@ -7,7 +7,11 @@
 {% block content %}
 <section class="section-notes">
   <div class="container">
-  <h1 class="list-card-heading" style="border-left: 5px solid {{ current_notebook.color }}">{{ current_notebook.name }}</h1>
+    <h1 class="list-card-heading" style="border-left: 5px solid {{ current_notebook.color }}">{{ current_notebook.name }}</h1>
+    <div class="notebook-controls">
+      <a class="btn-edit-notebook" href="{{ url_for('site.edit_notebook', notebook=current_notebook.id) }}">Edit</a>
+      <a class="btn-delete-notebook" href="{{ url_for('site.confirm_delete_notebook', notebook=current_notebook.id) }}">Delete</a>
+    </div>
     <ul class="list-cards">
       {% for note in notes %}
         <li class="note-card">
