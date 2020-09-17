@@ -42,12 +42,12 @@
       <ul class="nav-list">
         {% for notebook in notebooks %}
           <li class="list-item" onMouseOver="this.style.borderLeft='5px solid {{ notebook.color }}'" onMouseOut="this.style.borderLeft='5px solid var(--default-theme-white)'">
-            <a href="#">{{ notebook.name }}</a>
+            <a href="{{ url_for('site.list_notes', notebook=notebook.id) }}">{{ notebook.name }}</a>
           </li>
         {% endfor %}
       </ul>
     </nav>
-    <div class="add-notebook-btn">
+    <div class="btn-notebook-add">
       <a href="#">+ New Notebook</a>
     </div>
   </aside>

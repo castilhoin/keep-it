@@ -2,11 +2,15 @@
   --default-theme-primary: #009688;
   --default-theme-primary-dark: #00675B;
   --default-theme-secondary: #D84315;
-  --default-theme-secondary-medium: #FF7043;
+  --default-theme-secondary-medium: #FF8A65;
   --default-theme-secondary-light: #FFAB91;
   --default-theme-text-light: #FAFAFA;
   --default-theme-text-medium: #9E9E9E;
   --default-theme-text-dark: #424242;
+  --default-theme-function-primary: #64B5F6;
+  --default-theme-function-primary-dark: #42A5F5;
+  --default-theme-function-caution: #EF9A9A;
+  --default-theme-function-caution-dark: #E57373;
   --default-theme-white: #FFFFFF;
   --default-theme-gray-1: #EEEEEE;
   --default-theme-gray-2: #e0e0e0;
@@ -30,4 +34,12 @@ body {
 }
 .form-field {
   padding: 0.8em 0;
+}
+button {
+  border: 0;
+  border-radius: 5px;
+  display: block;
+  padding: 0.8em 1.5em;
+  cursor: pointer;
+  transition: .5s ease-in-out;
 }
