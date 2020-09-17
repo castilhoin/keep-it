@@ -11,11 +11,11 @@ Login
     <form action="{{ url_for('site.login') }}" method="POST">
       <div class="form-field">
         <label for="email">Email</label>
-        <input id="email" type="email" name="email" class="validate" max="50" required autofocus>
+        <input id="email" type="email" name="email" max="50" required autofocus>
       </div>
       <div class="form-field">
         <label for="password">Password</label>
-        <input id="password" type="password" name="password" class="validate" max="24" required>
+        <input id="password" type="password" name="password" max="24" required>
       </div>
       <button type="submit">Login</button>
     </form>
