@@ -89,12 +89,19 @@
 h1 {
   font-size: 3em;
   font-weight: bold;
+  display: inline-block;
 }
 .section-auth,
 .section-content,
 .section-notes,
 .sidebar {
   padding-top: 8em;
+  min-height: 100vh;
+}
+.section-auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .section-content {
   min-height: 100vh;
@@ -145,10 +152,11 @@ h1 {
   background: var(--default-theme-secondary-light);
   color: var(--default-theme-secondary);
   margin: 0.8em 0;
+  border: 2px solid var(--default-theme-secondary);
 }
 .section-auth button:hover,
 .section-content button:hover {
-  background: var(--default-theme-secondary-medium);
+  background: var(--default-theme-secondary);
   color: var(--default-theme-white);
 }
 .section-auth .auth-box a {
@@ -161,7 +169,6 @@ h1 {
 }
 .sidebar {
   width: 30vw;
-  min-height: 100vh;
   position: fixed;
   top: 0;
   right: -290px;
@@ -238,24 +245,26 @@ h1 {
   padding: 0 0 0 0.5em;
 }
 .section-notes .notebook-controls {
-  margin: 0.5em 0 0 1.2em;
+  margin: 0.5em 0 0 2.2em;
 }
 .section-notes .btn-edit-notebook,
 .section-notes .btn-delete-notebook {
   text-decoration: none;
-  padding: 0 1em;
+  padding: 0.5em 1em;
 }
 .section-notes .btn-edit-notebook {
   color: var(--default-theme-function-primary);
 }
 .section-notes .btn-edit-notebook:hover {
-  color: var(--default-theme-function-primary-dark);
+  color: var(--default-theme-white);
+  background: var(--default-theme-function-primary);
 }
 .section-notes .btn-delete-notebook {
   color: var(--default-theme-function-caution);
 }
 .section-notes .btn-delete-notebook:hover {
-  color: var(--default-theme-function-caution-dark);
+  color: var(--default-theme-white);
+  background: var(--default-theme-function-caution);
 }
 .section-notes .list-cards {
   list-style: none;
@@ -346,7 +355,6 @@ h1 {
   background: var(--default-theme-secondary-light);
   color: var(--default-theme-secondary);
 }
-
 .section-content .internal-form {
   margin: 2em 0 1em 0;
   width: 100%;
@@ -358,4 +366,22 @@ h1 {
 }
 .section-content input[type=color] {
   width: 50px;
+  padding: 0;
+}
+.btn-cancel-operation {
+  margin: 1.5em 0;
+  padding: 0.8em 2em;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: .5s ease-in-out;
+}
+.btn-cancel-operation {
+  color: var(--default-theme-function-primary-dark);
+  border: 2px solid var(--default-theme-function-primary);
+  margin-right: 20px;
+}
+.btn-cancel-operation:hover {
+  color: var(--default-theme-white);
+  background: var(--default-theme-function-primary);
 }

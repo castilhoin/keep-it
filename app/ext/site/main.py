@@ -70,26 +70,26 @@ def list_notes(notebook):
         if current_notebook.user_id == current_user.id:
             notes = Note.query.filter_by(notebook_id=notebook)
             return render_template("note/list.html", notebooks=notebooks, current_notebook=current_notebook, notes=notes)
-        return render_template("error.html", message="Sorry, you don't have permission to access this resource")
+        return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource.")
     else:
         return redirect(url_for("site.login"))
 
 @bp.route("/notebook/new", methods=["GET", "POST"])
 def new_notebook():
     if current_user.is_authenticated:
+        notebooks = Notebook.query.filter_by(user_id=current_user.id)
         if request.method == "POST":
             name = request.form["name"]
             if not name:
-                return render_template("error.html", message="Please, insert a name for your notebook")
+                return render_template("error.html", notebooks=notebooks, message="Please, insert a name for your notebook")
             color = request.form["color"]
             if not color:
-                return render_template("error.html", message="Please, choose a color for your notebook")
+                return render_template("error.html", notebooks=notebooks, message="Please, choose a color for your notebook")
             new_notebook = Notebook(name, color, current_user.id)
             db.session.add(new_notebook)
             db.session.commit()
             return redirect(url_for("site.index"))
         else:
-            notebooks = Notebook.query.filter_by(user_id=current_user.id)
             return render_template("notebook/new.html", notebooks=notebooks)
     else:
         return redirect(url_for("site.login"))
@@ -97,21 +97,23 @@ def new_notebook():
 @bp.route("/<int:notebook>/edit", methods=["GET", "POST"])
 def edit_notebook(notebook):
     if current_user.is_authenticated:
+        notebooks = Notebook.query.filter_by(user_id=current_user.id)
+        current_notebook = Notebook.query.filter_by(id=notebook).first()
         if request.method == "POST":
             name = request.form["name"]
             if not name:
-                return render_template("error.html", message="Please, insert a name for your notebook")
+                return render_template("error.html", notebooks=notebooks, message="Please, insert a name for your notebook")
             color = request.form["color"]
             if not color:
-                return render_template("error.html", message="Please, choose a color for your notebook")
-            edit_notebook = Notebook.query.filter_by(id=notebook).first()
-            edit_notebook.name = name
-            edit_notebook.color = color
-            db.session.commit()
-            return redirect(url_for("site.index"))
+                return render_template("error.html", notebooks=notebooks, message="Please, choose a color for your notebook")
+            if current_notebook.user_id == current_user.id:
+                edited_notebook = Notebook.query.filter_by(id=notebook).first()
+                edited_notebook.name = name
+                edited_notebook.color = color
+                db.session.commit()
+                return redirect(url_for("site.list_notes", notebook=notebook))
+            return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource.")
         else:
-            notebooks = Notebook.query.filter_by(user_id=current_user.id)
-            current_notebook = Notebook.query.filter_by(id=notebook).first()
             return render_template("notebook/edit.html", notebooks=notebooks, current_notebook=current_notebook)
     else:
         return redirect(url_for("site.login"))

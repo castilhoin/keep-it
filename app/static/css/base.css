@@ -1,9 +1,8 @@
 :root {
   --default-theme-primary: #009688;
   --default-theme-primary-dark: #00675B;
-  --default-theme-secondary: #D84315;
-  --default-theme-secondary-medium: #FF8A65;
-  --default-theme-secondary-light: #FFAB91;
+  --default-theme-secondary: #F57C00;
+  --default-theme-secondary-light: #FFCC80;
   --default-theme-text-light: #FAFAFA;
   --default-theme-text-medium: #9E9E9E;
   --default-theme-text-dark: #424242;
@@ -38,7 +37,7 @@ body {
 button {
   border: 0;
   border-radius: 5px;
-  display: block;
+  display: inline-block;
   padding: 0.8em 1.5em;
   cursor: pointer;
   transition: .5s ease-in-out;

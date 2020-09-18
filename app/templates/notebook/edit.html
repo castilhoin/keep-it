@@ -17,6 +17,7 @@ Edit Notebook: {{ current_notebook.name }}
         <label for="color">Color</label>
         <input id="color" type="color" name="color" value="{{ current_notebook.color }}" required>
       </div>
+      <a class="btn-cancel-operation" href="{{ url_for('site.list_notes', notebook=current_notebook.id) }}">Cancel</a>
       <button type="submit">Save Notebook</button>
     </form>
   </div>

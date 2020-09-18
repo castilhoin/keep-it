@@ -36,21 +36,21 @@
   {% block content %}
   {% endblock content %}
   {% if current_user.is_authenticated %}
-  <aside class="sidebar">
-    <nav class="sidebar-nav">
-      <div class="sidebar-heading">Your Notebooks</div>
-      <ul class="nav-list">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-heading">Your Notebooks</div>
+        <ul class="nav-list">
         {% for notebook in notebooks %}
           <li class="list-item" onMouseOver="this.style.borderLeft='5px solid {{ notebook.color }}'" onMouseOut="this.style.borderLeft='5px solid var(--default-theme-white)'">
             <a href="{{ url_for('site.list_notes', notebook=notebook.id) }}">{{ notebook.name }}</a>
           </li>
         {% endfor %}
-      </ul>
-    </nav>
-    <div class="btn-notebook-add">
-      <a href="{{ url_for('site.new_notebook') }}">+ New Notebook</a>
-    </div>
-  </aside>
+        </ul>
+      </nav>
+      <div class="btn-notebook-add">
+        <a href="{{ url_for('site.new_notebook') }}">+ New Notebook</a>
+      </div>
+    </aside>
   {% endif %}
   </section>
 </body>
