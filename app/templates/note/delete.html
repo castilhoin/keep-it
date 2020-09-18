@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+Delete Note
+{% endblock page_title %}
+
+{% block content %}
+<section class="section-content">
+  <div class="container">
+    <h1>Delete Note</h1>
+    <div class="content-text">
+      <p>Do you really want to delete this note?</p>
+      <div class="delete-controls">
+        <a class="btn-cancel-operation" href="{{ url_for('site.list_notes', notebook=current_notebook.id) }}">No, go back</a>
+        <a class="btn-confirm-delete" href="{{ url_for('site.deleted_note', notebook=current_notebook.id, note=current_note.id) }}">Yes, delete</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

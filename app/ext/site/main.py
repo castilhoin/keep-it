@@ -158,3 +158,30 @@ def edit_note(notebook, note):
             return render_template("note/edit.html", notebooks=notebooks, current_notebook=current_notebook, current_note=current_note)
     else:
         return redirect(url_for("site.login"))
+
+@bp.route("/<int:notebook>/<int:note>/delete", methods=["GET"])
+def delete_note(notebook, note):
+    if current_user.is_authenticated:
+        notebooks = Notebook.query.filter_by(user_id=current_user.id)
+        current_notebook = Notebook.query.filter_by(id=notebook).first()
+        current_note = Note.query.filter_by(id=note).first()
+        if current_notebook.user_id == current_user.id:
+            return render_template("note/delete.html", notebooks=notebooks, current_notebook=current_notebook, current_note=current_note)
+        else:
+            return render_template("error.html", message="Sorry, you don't have permission to access this resource")
+    else:
+        return redirect(url_for("site.login"))
+
+@bp.route("/<int:notebook>/<int:note>/deleted", methods=["GET"])
+def deleted_note(notebook, note):
+    if current_user.is_authenticated:
+        current_notebook = Notebook.query.filter_by(id=notebook).first()
+        current_note = Note.query.filter_by(id=note).first()
+        if current_notebook.user_id == current_user.id:
+            db.session.delete(current_note)
+            db.session.commit()
+            return redirect(url_for("site.list_notes", notebook=notebook))
+        else:
+            return render_template("error.html", message="Sorry, you don't have permission to access this resource")
+    else:
+        return redirect(url_for("site.login"))

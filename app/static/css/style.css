@@ -348,7 +348,7 @@ h1 {
 .section-notes .note-card .btn-note-delete:hover {
   background: var(--default-theme-function-caution-dark);
 }
-.btn-note-add {
+.section-notes .btn-note-add {
   display: inline-block;
   margin: 2em 0;
   padding: 1.5em 3em;
@@ -359,9 +359,14 @@ h1 {
   transition: .5s ease-in-out;
   text-decoration: none;
 }
-.btn-note-add:hover {
+.section-notes .btn-note-add:hover {
   background: var(--default-theme-secondary-light);
   color: var(--default-theme-secondary);
+}
+.section-content .note-category {
+  margin-top: 1em;
+  padding: 0 0 0 0.5em;
+  color: var(--default-theme-gray-4);
 }
 .section-content .internal-form {
   margin: 2em 0 1em 0;
@@ -377,7 +382,8 @@ h1 {
   width: 50px;
   padding: 0;
 }
-.section-content .btn-cancel-operation {
+.section-content .btn-cancel-operation,
+.section-content .btn-confirm-delete {
   margin: 1.5em 0;
   padding: 0.8em 2em;
   display: inline-block;
@@ -394,8 +400,12 @@ h1 {
   color: var(--default-theme-white);
   background: var(--default-theme-function-primary);
 }
-.section-content .note-category {
-  margin-top: 1em;
-  padding: 0 0 0 0.5em;
-  color: var(--default-theme-gray-4);
+.section-content .btn-confirm-delete {
+  color: var(--default-theme-white);
+  background: var(--default-theme-function-caution);
+  border: 2px solid var(--default-theme-function-caution);
+}
+.section-content .btn-confirm-delete:hover {
+  background: var(--default-theme-function-caution-dark);
+  border: 2px solid var(--default-theme-function-caution-dark);
 }

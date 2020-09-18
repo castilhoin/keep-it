@@ -23,7 +23,7 @@
           </div>
           <div class="card-controls">
             <a class="btn-note-edit" href="{{ url_for('site.edit_note', notebook=current_notebook.id, note=note.id) }}">Edit</a>
-            <a class="btn-note-delete">Delete</a>
+            <a class="btn-note-delete" href="{{ url_for('site.delete_note', notebook=current_notebook.id, note=note.id) }}">Delete</a>
           </div>
         </li>
       {% endfor %}
