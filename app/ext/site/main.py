@@ -71,7 +71,7 @@ def list_notes(notebook):
         if current_notebook.user_id == current_user.id:
             notes = Note.query.filter_by(notebook_id=notebook)
             return render_template("note/list.html", notebooks=notebooks, current_notebook=current_notebook, notes=notes)
-        return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource.")
+        return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource")
     else:
         return redirect(url_for("site.login"))
 
@@ -108,12 +108,11 @@ def edit_notebook(notebook):
             if not color:
                 return render_template("error.html", notebooks=notebooks, message="Please, choose a color for your notebook")
             if current_notebook.user_id == current_user.id:
-                edited_notebook = Notebook.query.filter_by(id=notebook).first()
-                edited_notebook.name = name
-                edited_notebook.color = color
+                current_notebook.name = name
+                current_notebook.color = color
                 db.session.commit()
                 return redirect(url_for("site.list_notes", notebook=notebook))
-            return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource.")
+            return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource")
         else:
             return render_template("notebook/edit.html", notebooks=notebooks, current_notebook=current_notebook)
     else:
@@ -133,8 +132,29 @@ def new_note(notebook):
                 db.session.add(new_note)
                 db.session.commit()
                 return redirect(url_for("site.list_notes", notebook=current_notebook.id))
-            return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource.")
+            return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource")
         else:
             return render_template("note/new.html", notebooks=notebooks, current_notebook=current_notebook)
+    else:
+        return redirect(url_for("site.login"))
+
+@bp.route("/<int:notebook>/<int:note>/edit", methods=["GET", "POST"])
+def edit_note(notebook, note):
+    if current_user.is_authenticated:
+        notebooks = Notebook.query.filter_by(user_id=current_user.id)
+        current_notebook = Notebook.query.filter_by(id=notebook).first()
+        current_note = Note.query.filter_by(id=note).first()
+        if request.method == "POST":
+            content = request.form["content"]
+            if not content:
+                return render_template("error.html", notebooks=notebooks, message="Please, insert your note content")
+            if current_notebook.user_id == current_user.id:
+                current_note.content = content
+                current_note.modified_at = datetime.utcnow()
+                db.session.commit()
+                return redirect(url_for("site.list_notes", notebook=notebook))
+            return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource")
+        else:
+            return render_template("note/edit.html", notebooks=notebooks, current_notebook=current_notebook, current_note=current_note)
     else:
         return redirect(url_for("site.login"))

@@ -331,6 +331,7 @@ h1 {
 .section-notes .note-card .btn-note-edit,
 .section-notes .note-card .btn-note-delete {
   text-align: center;
+  text-decoration: none;
   cursor: pointer;
 }
 .section-notes .note-card .btn-note-edit {
