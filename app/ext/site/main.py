@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_user, logout_user, current_user
 from app.ext.db import db
 from app.ext.db.models import User, Notebook, Note
+from datetime import datetime
 
 bp = Blueprint("site", __name__)
 
@@ -115,5 +116,25 @@ def edit_notebook(notebook):
             return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource.")
         else:
             return render_template("notebook/edit.html", notebooks=notebooks, current_notebook=current_notebook)
+    else:
+        return redirect(url_for("site.login"))
+
+@bp.route("/<int:notebook>/note/new", methods=["GET", "POST"])
+def new_note(notebook):
+    if current_user.is_authenticated:
+        notebooks = Notebook.query.filter_by(user_id=current_user.id)
+        current_notebook = Notebook.query.filter_by(id=notebook).first()
+        if request.method == "POST":
+            content = request.form["content"]
+            if not content:
+                return render_template("error.html", notebooks=notebooks, message="Please, insert your note content")
+            if current_notebook.user_id == current_user.id:
+                new_note = Note(content, datetime.utcnow(), notebook)
+                db.session.add(new_note)
+                db.session.commit()
+                return redirect(url_for("site.list_notes", notebook=current_notebook.id))
+            return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource.")
+        else:
+            return render_template("note/new.html", notebooks=notebooks, current_notebook=current_notebook)
     else:
         return redirect(url_for("site.login"))

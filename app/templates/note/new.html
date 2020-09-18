@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+New Note
+{% endblock page_title %}
+
+{% block content %}
+<section class="section-content">
+  <div class="container">
+    <h1>New Note</h1>
+    <div class="note-category" style="border-left: 2px solid {{ current_notebook.color }}">{{ current_notebook.name }}</div>
+    <form class="internal-form" action="{{ url_for('site.new_note', notebook=current_notebook.id) }}" method="POST">
+      <div class="form-field">
+        <label for="content">Note</label>
+        <textarea name="content" id="content" cols="30" rows="10" autofocus required>Write your note here...</textarea>
+      </div>
+      <a class="btn-cancel-operation" href="{{ url_for('site.list_notes', notebook=current_notebook.id) }}">Cancel</a>
+      <button class="btn-form-add-notebook" type="submit">Add Note</button>
+    </form>
+  </div>
+</section>
+{% endblock content %}

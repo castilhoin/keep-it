@@ -18,7 +18,7 @@
           <div class="note-card-content">
             <p>{{ note.content }}</p>
             <div class="note-card-info">
-              <p>{{ note.modified_at }}</p>
+              <p>{{ note.modified_at.strftime('%d %b %Y - %I:%M%p') }}</p>
             </div>
           </div>
           <div class="card-controls">
@@ -28,7 +28,7 @@
         </li>
       {% endfor %}
     </ul>
-    <a class="btn-note-add">+ New Note</a>
+    <a class="btn-note-add" href="{{ url_for('site.new_note', notebook=current_notebook.id) }}">+ New Note</a>
   </div>
 </section>
 {% endblock content %}

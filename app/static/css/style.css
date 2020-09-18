@@ -134,7 +134,8 @@ h1 {
   margin-bottom: 3px;
 }
 .section-auth input,
-.section-content input {
+.section-content input,
+.section-content textarea {
   width: 100%;
   display: block;
   padding: 0.5em;
@@ -142,8 +143,13 @@ h1 {
   color: var(--default-theme-text-dark);
   border-radius: 5px;
 }
+.section-content textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
 .section-auth input:focus,
-.section-content input:focus {
+.section-content input:focus,
+.section-content textarea:focus {
   color: var(--default-theme-text-dark);
   border: 1px solid var(--default-theme-primary);
 }
@@ -350,6 +356,7 @@ h1 {
   cursor: pointer;
   border-radius: 5px;
   transition: .5s ease-in-out;
+  text-decoration: none;
 }
 .btn-note-add:hover {
   background: var(--default-theme-secondary-light);
@@ -361,14 +368,15 @@ h1 {
   max-width: 500px;
 }
 .section-content .internal-form label,
-.section-content input {
+.section-content input,
+.section-content textarea {
   max-width: 500px;
 }
 .section-content input[type=color] {
   width: 50px;
   padding: 0;
 }
-.btn-cancel-operation {
+.section-content .btn-cancel-operation {
   margin: 1.5em 0;
   padding: 0.8em 2em;
   display: inline-block;
@@ -376,12 +384,17 @@ h1 {
   border-radius: 5px;
   transition: .5s ease-in-out;
 }
-.btn-cancel-operation {
+.section-content .btn-cancel-operation {
   color: var(--default-theme-function-primary-dark);
   border: 2px solid var(--default-theme-function-primary);
   margin-right: 20px;
 }
-.btn-cancel-operation:hover {
+.section-content .btn-cancel-operation:hover {
   color: var(--default-theme-white);
   background: var(--default-theme-function-primary);
+}
+.section-content .note-category {
+  margin-top: 1em;
+  padding: 0 0 0 0.5em;
+  color: var(--default-theme-gray-4);
 }

@@ -1,7 +1,6 @@
 from app.ext.db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from datetime import datetime
 
 class User(db.Model, UserMixin):
     __tablename__ = "users"
@@ -34,5 +33,10 @@ class Note(db.Model):
     __tablename__ = "notes"
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     content = db.Column(db.String(5000), nullable=False)
-    modified_at = db.Column(db.DateTime, default=datetime.utcnow)
+    modified_at = db.Column(db.DateTime)
     notebook_id = db.Column(db.Integer, db.ForeignKey("notebooks.id"))
+
+    def __init__(self, content, modified_at, notebook_id):
+        self.content = content
+        self.modified_at = modified_at
+        self.notebook_id = notebook_id
