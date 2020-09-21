@@ -31,6 +31,11 @@ def signup():
             password = request.form["password"]
             if not password:
                 return render_template("error.html", message="Please, insert a password")
+            confirm_password = request.form["confirm-password"]
+            if not confirm_password:
+                return render_template("error.html", message="Please, confirm your password")
+            if password != confirm_password:
+                return render_template("error.html", message="Passwords does not match")
             user = User(name, email, password)
             db.session.add(user)
             db.session.commit()
