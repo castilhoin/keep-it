@@ -5,12 +5,31 @@ Dashboard
 {% endblock page_title %}
 
 {% block content %}
-<section class="section-content">
+<section class="section-content section-notes">
   <div class="container">
     <h1>Hi, {{ current_user.name }}!</h1>
     <div class="content-text">
-      {% if notebooks %}
-        <p>Choose a notebook to see your notes or create a new one.</p>
+      {% if notes.first() != None %}
+        <ul class="list-cards">
+          {% for note in notes %}
+            <li class="note-card">
+              <div class="note-card-content">
+                <p>{{ note.content[:100] | replace('\n', '<br>') | safe }}</p>
+                <div class="note-card-info">
+                  <p style="border-left: 2px solid {{ (notebooks | selectattr('id', 'equalto', note.notebook_id) | list | first).color }}; padding-left: 0.3em;">
+                    {{ (notebooks | selectattr('id', 'equalto', note.notebook_id) | list | first).name }}</p>
+                  <p class="note-card-date">{{ note.modified_at.strftime('%d %b %Y - %I:%M%p') }}</p>
+                </div>
+              </div>
+              <div class="card-controls">
+                <a class="btn-note-edit" href="{{ url_for('site.edit_note', notebook=note.notebook_id, note=note.id) }}">Edit</a>
+                <a class="btn-note-delete" href="{{ url_for('site.delete_note', notebook=note.notebook_id, note=note.id) }}">Delete</a>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% elif notebooks.first() != None %}
+        <p>Choose a notebook or create a new one.</p>
       {% else %}
         <p>Start creating your notebooks!</p>
       {% endif %}

@@ -310,8 +310,11 @@ h1 {
 }
 .section-notes .note-card .note-card-info {
   padding: 0.5em 0 0 0;
-  font-style: italic;
   color: var(--default-theme-gray-4);
+}
+.section-notes .note-card-date {
+  font-style: italic;
+  padding: 0 0 0.3em 0;
 }
 .section-notes .note-card .card-controls {
   margin-top: 15px;

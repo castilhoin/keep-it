@@ -16,7 +16,7 @@
       {% for note in notes %}
         <li class="note-card">
           <div class="note-card-content">
-            <p>{{ note.content | replace('\n', '<br>') | safe }}</p>
+            <p>{{ note.content[:100] | replace('\n', '<br>') | safe }}</p>
             <div class="note-card-info">
               <p>{{ note.modified_at.strftime('%d %b %Y - %I:%M%p') }}</p>
             </div>

@@ -34,9 +34,11 @@ class Note(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     content = db.Column(db.String(5000), nullable=False)
     modified_at = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     notebook_id = db.Column(db.Integer, db.ForeignKey("notebooks.id"))
 
-    def __init__(self, content, modified_at, notebook_id):
+    def __init__(self, content, modified_at, user_id, notebook_id):
         self.content = content
         self.modified_at = modified_at
+        self.user_id = user_id
         self.notebook_id = notebook_id

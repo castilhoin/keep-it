@@ -3,14 +3,16 @@ from flask_login import login_user, logout_user, current_user
 from app.ext.db import db
 from app.ext.db.models import User, Notebook, Note
 from datetime import datetime
+from sqlalchemy import desc
 
 bp = Blueprint("site", __name__)
 
 @bp.route("/", methods=["GET"])
 def index():
     if current_user.is_authenticated:
-        notebooks = Notebook.query.filter_by(user_id=current_user.id)
-        return render_template("index.html", notebooks=notebooks)
+        notebooks = Notebook.query.filter_by(user_id=current_user.id).order_by("name")
+        notes = Note.query.filter_by(user_id=current_user.id).order_by(desc("modified_at"))
+        return render_template("index.html", notebooks=notebooks, notes=notes)
     else:
         return redirect(url_for("site.login"))
 
@@ -66,10 +68,10 @@ def logout():
 @bp.route("/<int:notebook>", methods=["GET"])
 def list_notes(notebook):
     if current_user.is_authenticated:
-        notebooks = Notebook.query.filter_by(user_id=current_user.id)
+        notebooks = Notebook.query.filter_by(user_id=current_user.id).order_by("name")
         current_notebook = Notebook.query.filter_by(id=notebook).first()
         if current_notebook.user_id == current_user.id:
-            notes = Note.query.filter_by(notebook_id=notebook)
+            notes = Note.query.filter_by(notebook_id=notebook).order_by(desc("modified_at"))
             return render_template("note/list.html", notebooks=notebooks, current_notebook=current_notebook, notes=notes)
         return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource")
     else:
@@ -78,7 +80,7 @@ def list_notes(notebook):
 @bp.route("/notebook/new", methods=["GET", "POST"])
 def new_notebook():
     if current_user.is_authenticated:
-        notebooks = Notebook.query.filter_by(user_id=current_user.id)
+        notebooks = Notebook.query.filter_by(user_id=current_user.id).order_by("name")
         if request.method == "POST":
             name = request.form["name"]
             if not name:
@@ -98,7 +100,7 @@ def new_notebook():
 @bp.route("/<int:notebook>/edit", methods=["GET", "POST"])
 def edit_notebook(notebook):
     if current_user.is_authenticated:
-        notebooks = Notebook.query.filter_by(user_id=current_user.id)
+        notebooks = Notebook.query.filter_by(user_id=current_user.id).order_by("name")
         current_notebook = Notebook.query.filter_by(id=notebook).first()
         if request.method == "POST":
             name = request.form["name"]
@@ -121,7 +123,7 @@ def edit_notebook(notebook):
 @bp.route("/<int:notebook>/delete", methods=["GET"])
 def delete_notebook(notebook):
     if current_user.is_authenticated:
-        notebooks = Notebook.query.filter_by(user_id=current_user.id)
+        notebooks = Notebook.query.filter_by(user_id=current_user.id).order_by("name")
         current_notebook = Notebook.query.filter_by(id=notebook).first()
         if current_notebook.user_id == current_user.id:
             left_notes = Note.query.filter_by(notebook_id=notebook).first()
@@ -150,14 +152,14 @@ def deleted_notebook(notebook):
 @bp.route("/<int:notebook>/note/new", methods=["GET", "POST"])
 def new_note(notebook):
     if current_user.is_authenticated:
-        notebooks = Notebook.query.filter_by(user_id=current_user.id)
+        notebooks = Notebook.query.filter_by(user_id=current_user.id).order_by("name")
         current_notebook = Notebook.query.filter_by(id=notebook).first()
         if request.method == "POST":
             content = request.form["content"]
             if not content:
                 return render_template("error.html", notebooks=notebooks, message="Please, insert your note content")
             if current_notebook.user_id == current_user.id:
-                new_note = Note(content, datetime.utcnow(), notebook)
+                new_note = Note(content, datetime.utcnow(), current_user.id, notebook)
                 db.session.add(new_note)
                 db.session.commit()
                 return redirect(url_for("site.list_notes", notebook=current_notebook.id))
@@ -170,7 +172,7 @@ def new_note(notebook):
 @bp.route("/<int:notebook>/<int:note>/edit", methods=["GET", "POST"])
 def edit_note(notebook, note):
     if current_user.is_authenticated:
-        notebooks = Notebook.query.filter_by(user_id=current_user.id)
+        notebooks = Notebook.query.filter_by(user_id=current_user.id).order_by("name")
         current_notebook = Notebook.query.filter_by(id=notebook).first()
         current_note = Note.query.filter_by(id=note).first()
         if request.method == "POST":
@@ -191,7 +193,7 @@ def edit_note(notebook, note):
 @bp.route("/<int:notebook>/<int:note>/delete", methods=["GET"])
 def delete_note(notebook, note):
     if current_user.is_authenticated:
-        notebooks = Notebook.query.filter_by(user_id=current_user.id)
+        notebooks = Notebook.query.filter_by(user_id=current_user.id).order_by("name")
         current_notebook = Notebook.query.filter_by(id=notebook).first()
         current_note = Note.query.filter_by(id=note).first()
         if current_notebook.user_id == current_user.id:
