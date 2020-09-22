@@ -33,9 +33,9 @@
   --solarized-theme-function-caution-dark: #EF5350;
   --white: #FFFFFF;
   --black: #000000;
-  --text-light: #FAFAFA; /* ECEFF1 or CFD8DC */
-  --text-medium: #9E9E9E; /* 607D8B */
-  --text-dark: #424242; /* 263238 */
+  --text-light: #FAFAFA;
+  --text-medium: #9E9E9E;
+  --text-dark: #424242;
 }
 body {
   background: var(--default-theme-gray-1);
