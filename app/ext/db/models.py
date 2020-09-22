@@ -8,6 +8,7 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
+    theme = db.Column(db.String(10), default="default")
 
     def __init__(self, name, email, password):
         self.name = name

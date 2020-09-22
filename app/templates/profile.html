@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+My Profile
+{% endblock page_title %}
+
+{% block content %}
+<section class="section-content">
+  <div class="container">
+    <h1>My Profile</h1>
+    <div class="content-text">
+      <form class="internal-form" action="{{ url_for('site.profile') }}" method="POST">
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input id="name" type="text" name="name" value="{{ current_user.name }}" max="20" required autofocus>
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" value="{{ current_user.email }}" max="50" required>
+        </div>
+        <div class="form-field">
+          <label for="theme">Theme</label>
+          <select name="theme" id="theme">
+            <option value="default" {% if current_user.theme == "default" %} selected="selected" {% endif %}>Default</option>
+            <option value="night" {% if current_user.theme == "night" %} selected="selected" {% endif %}>Night</option>
+            <option value="solarized" {% if current_user.theme == "solarized" %} selected="selected" {% endif %}>Solarized</option>
+          </select>
+        </div>
+        <!--
+        <div class="change-password-box">
+          <h2>Change Password</h2>
+          <p>Leave blank if you don't want to change.</p>
+          <div class="form-field">
+            <label for="current-password">Current Password</label>
+            <input id="current-password" type="password" name="current-password" max="24">
+          </div>
+          <div class="form-field">
+            <label for="new-password">New Password</label>
+            <input id="new-password" type="password" name="new-password" max="24">
+          </div>
+          <div class="form-field">
+            <label for="confirm-password">Confirm Password</label>
+            <input id="confirm-password" type="password" name="confirm-password" max="24">
+          </div>
+        </div>
+        -->
+        <a class="btn-cancel-operation" href="{{ url_for('site.index') }}">Cancel</a>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock content %}

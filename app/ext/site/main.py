@@ -221,3 +221,34 @@ def deleted_note(notebook, note):
             return render_template("error.html", notebooks=notebooks, message="Sorry, you don't have permission to access this resource")
     else:
         return redirect(url_for("site.login"))
+
+@bp.route("/profile", methods=["GET", "POST"])
+def profile():
+    if current_user.is_authenticated:
+        notebooks = Notebook.query.filter_by(user_id=current_user.id).order_by("name")
+        if request.method == "POST":
+            name = request.form["name"]
+            if not name:
+                return render_template("error.html", notebooks=notebooks, message="Please, insert a name")
+            email = request.form["email"]
+            if not email:
+                return render_template("error.html", notebooks=notebooks, message="Please, insert an email")
+            theme = request.form["theme"]
+            if not theme:
+                return render_template("error.html", notebooks=notebooks, message="Please, choose a theme")
+            # current_password = request.form["current-password"]
+            # new_password = request.form["new-password"]
+            # confirm_password = request.form["confirm-password"]
+            # if current_password:
+                # if new_password == confirm_password
+            user = User.query.filter_by(id=current_user.id).first()
+            user.name = name
+            user.email = email
+            user.theme = theme
+            # user.password = new_password
+            db.session.commit()
+            return redirect(url_for("site.index"))
+        else:
+            return render_template("profile.html", notebooks=notebooks)
+    else:
+        return redirect(url_for("site.login"))

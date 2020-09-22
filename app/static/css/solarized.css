@@ -1,0 +1,163 @@
+body {
+  background: var(--solarized-theme-secondary-light);
+  color: var(--text-dark);
+}
+.header {
+  background: var(--solarized-theme-primary);
+  box-shadow: 0 0 8px var(--text-dark);
+}
+.header .header-brand a {
+  color: var(--text-light);
+}
+.header .nav-btn:hover {
+  background: var(--solarized-theme-primary-dark);
+}
+.header .btn-hamburger {
+  background: var(--text-light);
+}
+.header .btn-hamburger:before,
+.header .btn-hamburger:after {
+  background: var(--text-light);
+}
+.header .login-btn a {
+  color: var(--text-light);
+  background: var(--solarized-theme-primary);
+}
+.header .login-btn a:hover {
+  background: var(--solarized-theme-primary-dark);
+}
+.section-content .btn-settings {
+  color: var(--text-medium);
+}
+.section-content .btn-settings:hover {
+  color: var(--text-dark);
+  background: none;
+}
+.section-auth .auth-box {
+  background: var(--white);
+  box-shadow: 0 0 6px var(--text-medium);
+}
+.section-auth label,
+.section-content .internal-form label {
+  color: var(--text-dark);
+}
+.section-auth input,
+.section-content .internal-form input,
+.section-content .internal-form select,
+.section-content .internal-form textarea {
+  border: 1px solid var(--solarized-theme-secondary);
+  background: var(--solarized-theme-secondary);
+  color: var(--text-dark);
+}
+.section-auth input:focus,
+.section-content .internal-form input:focus,
+.section-content .internal-form textarea:focus {
+  color: var(--text-dark);
+  border: 1px solid var(--solarized-theme-primary);
+}
+.section-auth button,
+.section-content button {
+  background: var(--solarized-theme-primary);
+  color: var(--text-light);
+  border: 2px solid var(--solarized-theme-primary-dark);
+}
+.section-auth button:hover,
+.section-content button:hover {
+  background: var(--solarized-theme-primary-dark);
+  color: var(--white);
+}
+.section-auth .auth-box a {
+  color: var(--text-dark);
+}
+.section-auth .auth-box a:hover {
+  color: var(--text-medium);
+}
+.sidebar {
+  background: var(--solarized-theme-secondary);
+  box-shadow: 0 0 6px var(--text-medium);
+}
+.sidebar .sidebar-heading {
+  color: var(--text-dark);
+}
+.sidebar .nav-list .list-item:hover {
+  background: var(--solarized-theme-secondary-light);
+}
+.sidebar .nav-list a {
+  color: var(--text-dark);
+}
+.sidebar .btn-notebook-add a {
+  color: var(--text-dark);
+  background: none;
+}
+.sidebar .btn-notebook-add a:hover {
+  background: var(--solarized-theme-secondary-light);
+  color: var(--text-dark);
+}
+.section-notes .btn-edit-notebook {
+  color: var(--solarized-theme-function-primary);
+}
+.section-notes .btn-edit-notebook:hover {
+  color: var(--white);
+  background: var(--solarized-theme-function-primary);
+}
+.section-notes .btn-delete-notebook {
+  color: var(--solarized-theme-function-caution);
+}
+.section-notes .btn-delete-notebook:hover {
+  color: var(--white);
+  background: var(--solarized-theme-function-caution);
+}
+.section-notes .note-card {
+  background: var(--white);
+  box-shadow: 0 0 6px var(--text-medium);
+  color: var(--text-dark);
+}
+.section-notes .note-card .note-card-info {
+  color: var(--text-medium);
+}
+.section-notes .note-card .card-controls {
+  border-top: 1px solid var(--text-medium);
+}
+.section-notes .note-card .btn-note-edit {
+  background: var(--solarized-theme-function-primary);
+  color: var(--white);
+}
+.section-notes .note-card .btn-note-edit:hover {
+  background: var(--solarized-theme-function-primary-dark);
+}
+.section-notes .note-card .btn-note-delete {
+  background: var(--solarized-theme-function-caution);
+  color: var(--white);
+}
+.section-notes .note-card .btn-note-delete:hover {
+  background: var(--solarized-theme-function-caution-dark);
+}
+.section-notes .btn-note-add {
+  color: var(--black);
+  background: var(--solarized-theme-secondary);
+}
+.section-notes .btn-note-add:hover {
+  background: var(--solarized-theme-secondary-light);
+  color: var(--text-medium);
+}
+.section-content .note-category {
+  color: var(--text-medium);
+}
+.section-content .btn-cancel-operation {
+  color: var(--solarized-theme-function-primary-dark);
+  border: 2px solid var(--solarized-theme-function-primary);
+}
+.section-content .btn-cancel-operation:hover {
+  color: var(--white);
+  background: var(--solarized-theme-function-primary-dark);
+  border: 2px solid var(--solarized-theme-function-primary-dark);
+}
+.section-content .btn-confirm-delete {
+  color: var(--white);
+  background: var(--solarized-theme-function-caution);
+  border: 2px solid var(--solarized-theme-function-caution);
+}
+.section-content .btn-confirm-delete:hover {
+  background: var(--solarized-theme-function-caution-dark);
+  border: 2px solid var(--solarized-theme-function-caution-dark);
+}

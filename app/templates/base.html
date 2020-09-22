@@ -7,18 +7,23 @@
   <link rel="stylesheet" href="/static/css/reset.css">
   <link rel="stylesheet" href="/static/css/base.css">
   <link rel="stylesheet" href="/static/css/style.css">
+  {% if current_user.is_authenticated and current_user.theme == "night" %}
+    <link rel="stylesheet" href="/static/css/night.css">
+  {% elif current_user.is_authenticated and current_user.theme == "solarized" %}
+    <link rel="stylesheet" href="/static/css/solarized.css">
+  {% endif %}
   <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
   <title>{% block page_title %}{% endblock page_title %} | Keep It</title>
 </head>
 <body>
-  <input type="checkbox" id="nav-btn-checkbox" class="nav-btn-checkbox">
+  <input type="checkbox" id="checkbox-main-nav" class="checkbox-main-nav">
   <header class="header">
     <div class="header-content container">
       <div class="header-brand">
         <a href="{{ url_for('site.index') }}">Keep It</a>
       </div>
       {% if current_user.is_authenticated %}
-        <label for="nav-btn-checkbox" class="nav-btn">
+        <label for="checkbox-main-nav" class="nav-btn">
           <span class="btn-hamburger"></span>
         </label>
       {% else %}
@@ -41,7 +46,7 @@
         <div class="sidebar-heading">Your Notebooks</div>
         <ul class="nav-list">
         {% for notebook in notebooks %}
-          <li class="list-item" onMouseOver="this.style.borderLeft='5px solid {{ notebook.color }}'" onMouseOut="this.style.borderLeft='5px solid var(--default-theme-white)'">
+          <li class="list-item" onMouseOver="this.style.borderLeft='5px solid {{ notebook.color }}'" onMouseOut="this.style.borderLeft='0'">
             <a href="{{ url_for('site.list_notes', notebook=notebook.id) }}">{{ notebook.name }}</a>
           </li>
         {% endfor %}

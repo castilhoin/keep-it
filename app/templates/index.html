@@ -8,6 +8,8 @@ Dashboard
 <section class="section-content section-notes">
   <div class="container">
     <h1>Hi, {{ current_user.name }}!</h1>
+    <a href="{{ url_for('site.profile') }}" class="btn-settings">Settings</a>
+    <a href="{{ url_for('site.logout') }}" class="btn-settings">Logout</a>
     <div class="content-text">
       {% if notes.first() != None %}
         <ul class="list-cards">

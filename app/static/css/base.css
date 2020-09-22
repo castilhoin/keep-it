@@ -3,24 +3,45 @@
   --default-theme-primary-dark: #00675B;
   --default-theme-secondary: #F57C00;
   --default-theme-secondary-light: #FFCC80;
-  --default-theme-text-light: #FAFAFA;
-  --default-theme-text-medium: #9E9E9E;
-  --default-theme-text-dark: #424242;
   --default-theme-function-primary: #64B5F6;
   --default-theme-function-primary-dark: #42A5F5;
   --default-theme-function-caution: #EF9A9A;
   --default-theme-function-caution-dark: #E57373;
-  --default-theme-white: #FFFFFF;
   --default-theme-gray-1: #EEEEEE;
   --default-theme-gray-2: #e0e0e0;
   --default-theme-gray-3: #BCBCBC;
   --default-theme-gray-4: #AEAEAE;
+  --night-theme-primary: #424242;
+  --night-theme-primary-dark: #212121;
+  --night-theme-secondary: #FF6F00;
+  --night-theme-secondary-light: #FFB300;
+  --night-theme-function-primary: #9FA8DA;
+  --night-theme-function-primary-dark: #5C6BC0;
+  --night-theme-function-caution: #F48FB1;
+  --night-theme-function-caution-dark: #EC407A;
+  --night-theme-gray-1: #37474F;
+  --night-theme-gray-2: #455A64;
+  --night-theme-gray-3: #546E7A;
+  --night-theme-gray-4: #607D8B;
+  --solarized-theme-primary: #00ACC1;
+  --solarized-theme-primary-dark: #00838F;
+  --solarized-theme-secondary: #FFEE58;
+  --solarized-theme-secondary-light: #FFF9C4;
+  --solarized-theme-function-primary: #80DEEA;
+  --solarized-theme-function-primary-dark: #00ACC1;
+  --solarized-theme-function-caution: #EF9A9A;
+  --solarized-theme-function-caution-dark: #EF5350;
+  --white: #FFFFFF;
+  --black: #000000;
+  --text-light: #FAFAFA; /* ECEFF1 or CFD8DC */
+  --text-medium: #9E9E9E; /* 607D8B */
+  --text-dark: #424242; /* 263238 */
 }
 body {
   background: var(--default-theme-gray-1);
   font-size: 12px;
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-  color: var(--default-theme-text-dark);
+  color: var(--text-dark);
 }
 .container {
   margin: 0 auto;

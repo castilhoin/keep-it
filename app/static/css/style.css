@@ -2,7 +2,7 @@
   background: var(--default-theme-primary);
   width: 100vw;
   position: fixed;
-  box-shadow: 0 0 8px var(--default-theme-text-dark);
+  box-shadow: 0 0 8px var(--text-dark);
   top: 0;
   padding: 1em 0;
   z-index: 5;
@@ -13,7 +13,7 @@
   justify-content: space-between;
 }
 .header .header-brand a {
-  color: var(--default-theme-text-light);
+  color: var(--text-light);
   font-size: 2.8em;
   text-decoration: none;
 }
@@ -22,7 +22,7 @@
   width: 50px;
   height: 50px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background .3s;
 }
 @media only screen and (min-width: 768px) {
   .header .nav-btn {
@@ -35,7 +35,7 @@
 }
 .header .btn-hamburger {
   display: block;
-  background: var(--default-theme-text-light);
+  background: var(--text-light);
   width: 26px;
   height: 3px;
   position: relative;
@@ -45,7 +45,7 @@
 }
 .header .btn-hamburger:before,
 .header .btn-hamburger:after {
-  background: var(--default-theme-text-light);
+  background: var(--text-light);
   content: '';
   display: block;
   width: 100%;
@@ -59,22 +59,22 @@
 .header .btn-hamburger:after {
   bottom: -8px;
 }
-.nav-btn-checkbox {
+.checkbox-main-nav {
   display: none;
 }
-.nav-btn-checkbox:checked ~ .header .btn-hamburger {
+.checkbox-main-nav:checked ~ .header .btn-hamburger {
   transform: rotate(45deg);
 }
-.nav-btn-checkbox:checked ~ .header .btn-hamburger:before {
+.checkbox-main-nav:checked ~ .header .btn-hamburger:before {
   transform: rotate(90deg);
   top: 0;
 }
-.nav-btn-checkbox:checked ~ .header .btn-hamburger:after {
+.checkbox-main-nav:checked ~ .header .btn-hamburger:after {
   transform: rotate(90deg);
   bottom: 0;
 }
 .header .login-btn a {
-  color: var(--default-theme-text-light);
+  color: var(--text-light);
   background: var(--default-theme-primary);
   font-size: 1.5em;
   text-decoration: none;
@@ -115,42 +115,53 @@ h1 {
 .section-content .content-text {
   margin: 2em 0 1em 0;
 }
+.section-content .btn-settings {
+  padding: 0.5em;
+  margin: 0 0 0 0.5em;
+  color: var(--default-theme-gray-4);
+  text-decoration: none;
+  transition: .5s ease-in-out;
+}
+.section-content .btn-settings:hover {
+  background: var(--default-theme-gray-2);
+}
 .section-auth .auth-box {
   width: 40vw;
   max-width: 450px;
   min-width: 300px;
-  background: var(--default-theme-white);
+  background: var(--white);
   margin: 0 auto;
   margin-bottom: 2em;
   padding: 1.2em 1.5em;
   border-radius: 5px;
-  box-shadow: 0 0 6px var(--default-theme-text-medium);
+  box-shadow: 0 0 6px var(--text-medium);
 }
 .section-auth label,
-.section-content label {
+.section-content .internal-form label {
   width: 100%;
   display: block;
   color: var(--default-theme-gray-4);
   margin-bottom: 3px;
 }
 .section-auth input,
-.section-content input,
-.section-content textarea {
+.section-content .internal-form input,
+.section-content .internal-form select,
+.section-content .internal-form textarea {
   width: 100%;
   display: block;
   padding: 0.5em;
   border: 1px solid var(--default-theme-gray-3);
-  color: var(--default-theme-text-dark);
+  color: var(--text-dark);
   border-radius: 5px;
 }
-.section-content textarea {
+.section-content .internal-form textarea {
   font-family: inherit;
   font-size: inherit;
 }
 .section-auth input:focus,
-.section-content input:focus,
-.section-content textarea:focus {
-  color: var(--default-theme-text-dark);
+.section-content .internal-form input:focus,
+.section-content .internal-form textarea:focus {
+  color: var(--text-dark);
   border: 1px solid var(--default-theme-primary);
 }
 .section-auth button,
@@ -163,11 +174,12 @@ h1 {
 .section-auth button:hover,
 .section-content button:hover {
   background: var(--default-theme-secondary);
-  color: var(--default-theme-white);
+  color: var(--white);
 }
 .section-auth .auth-box a {
-  color: var(--default-theme-text-dark);
+  color: var(--text-dark);
   text-decoration: none;
+  transition: .5s ease-in-out;
 }
 .section-auth .auth-box a:hover {
   color: var(--default-theme-gray-4);
@@ -178,12 +190,12 @@ h1 {
   position: fixed;
   top: 0;
   right: -290px;
-  background: var(--default-theme-white);
-  box-shadow: 0 0 6px var(--default-theme-text-medium);
+  background: var(--white);
+  box-shadow: 0 0 6px var(--text-medium);
   z-index: 3;
   transition: right .8s ease-in-out;
 }
-.nav-btn-checkbox:checked ~ .content .sidebar {
+.checkbox-main-nav:checked ~ .content .sidebar {
   right: 0px;
 }
 @media only screen and (max-width: 768px) {
@@ -213,14 +225,13 @@ h1 {
   list-style: none;
 }
 .sidebar .nav-list .list-item {
-  border-left: 5px solid var(--default-theme-white);
   transition: .5s ease-in-out;
 }
 .sidebar .nav-list .list-item:hover {
   background: var(--default-theme-gray-2);
 }
 .sidebar .nav-list a {
-  color: var(--default-theme-text-dark);
+  color: var(--text-dark);
   padding: 1em 1.5em;
   font-size: 1.5em;
   display: block;
@@ -257,19 +268,20 @@ h1 {
 .section-notes .btn-delete-notebook {
   text-decoration: none;
   padding: 0.5em 1em;
+  transition: .5s ease-in-out;
 }
 .section-notes .btn-edit-notebook {
   color: var(--default-theme-function-primary);
 }
 .section-notes .btn-edit-notebook:hover {
-  color: var(--default-theme-white);
+  color: var(--white);
   background: var(--default-theme-function-primary);
 }
 .section-notes .btn-delete-notebook {
   color: var(--default-theme-function-caution);
 }
 .section-notes .btn-delete-notebook:hover {
-  color: var(--default-theme-white);
+  color: var(--white);
   background: var(--default-theme-function-caution);
 }
 .section-notes .list-cards {
@@ -301,8 +313,8 @@ h1 {
   }
 }
 .section-notes .note-card {
-  background: var(--default-theme-white);
-  box-shadow: 0 0 6px var(--default-theme-text-medium);
+  background: var(--white);
+  box-shadow: 0 0 6px var(--text-medium);
   padding: 1em;
   display: flex;
   flex-direction: column;
@@ -339,14 +351,14 @@ h1 {
 }
 .section-notes .note-card .btn-note-edit {
   background: var(--default-theme-function-primary);
-  color: var(--default-theme-white);
+  color: var(--white);
 }
 .section-notes .note-card .btn-note-edit:hover {
   background: var(--default-theme-function-primary-dark);
 }
 .section-notes .note-card .btn-note-delete {
   background: var(--default-theme-function-caution);
-  color: var(--default-theme-white);
+  color: var(--white);
 }
 .section-notes .note-card .btn-note-delete:hover {
   background: var(--default-theme-function-caution-dark);
@@ -377,8 +389,9 @@ h1 {
   max-width: 500px;
 }
 .section-content .internal-form label,
-.section-content input,
-.section-content textarea {
+.section-content .internal-form input,
+.section-content .internal-form select,
+.section-content .internal-form textarea {
   max-width: 500px;
 }
 .section-content input[type=color] {
@@ -400,11 +413,11 @@ h1 {
   margin-right: 20px;
 }
 .section-content .btn-cancel-operation:hover {
-  color: var(--default-theme-white);
+  color: var(--white);
   background: var(--default-theme-function-primary);
 }
 .section-content .btn-confirm-delete {
-  color: var(--default-theme-white);
+  color: var(--white);
   background: var(--default-theme-function-caution);
   border: 2px solid var(--default-theme-function-caution);
 }
