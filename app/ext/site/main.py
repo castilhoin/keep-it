@@ -226,6 +226,7 @@ def deleted_note(notebook, note):
 def profile():
     if current_user.is_authenticated:
         notebooks = Notebook.query.filter_by(user_id=current_user.id).order_by("name")
+        user = User.query.filter_by(id=current_user.id).first()
         if request.method == "POST":
             name = request.form["name"]
             if not name:
@@ -236,16 +237,22 @@ def profile():
             theme = request.form["theme"]
             if not theme:
                 return render_template("error.html", notebooks=notebooks, message="Please, choose a theme")
-            # current_password = request.form["current-password"]
-            # new_password = request.form["new-password"]
-            # confirm_password = request.form["confirm-password"]
-            # if current_password:
-                # if new_password == confirm_password
-            user = User.query.filter_by(id=current_user.id).first()
             user.name = name
             user.email = email
             user.theme = theme
-            # user.password = new_password
+            current_password = request.form["current-password"]
+            if current_password:
+                if not user.verify_password(current_password):
+                    return render_template("error.html", notebooks=notebooks, message="Incorrect password")
+                new_password = request.form["new-password"]
+                if not new_password:
+                    return render_template("error.html", notebooks=notebooks, message="Please, insert a new password")
+                confirm_password = request.form["confirm-password"]
+                if not confirm_password:
+                    return render_template("error.html", notebooks=notebooks, message="Please, confirm your new password")
+                if new_password != confirm_password:
+                    return render_template("error.html", notebooks=notebooks, message="New passwords does not match")
+                user.change_password(new_password)
             db.session.commit()
             return redirect(url_for("site.index"))
         else:

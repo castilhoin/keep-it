@@ -125,6 +125,11 @@ h1 {
 .section-content .btn-settings:hover {
   background: var(--default-theme-gray-2);
 }
+.section-content .change-password-box {
+  background: var(--default-theme-gray-2);
+  padding: 1em;
+  margin: 1em 0;
+}
 .section-auth .auth-box {
   width: 40vw;
   max-width: 450px;

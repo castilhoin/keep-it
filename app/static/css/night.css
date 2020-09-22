@@ -32,6 +32,9 @@ body {
 .section-content .btn-settings:hover {
   background: var(--night-theme-gray-2);
 }
+.section-content .change-password-box {
+  background: var(--night-theme-primary-dark);
+}
 .section-auth .auth-box {
   background: var(--night-theme-gray-1);
   box-shadow: 0 0 6px var(--black);

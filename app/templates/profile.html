@@ -26,7 +26,6 @@ My Profile
             <option value="solarized" {% if current_user.theme == "solarized" %} selected="selected" {% endif %}>Solarized</option>
           </select>
         </div>
-        <!--
         <div class="change-password-box">
           <h2>Change Password</h2>
           <p>Leave blank if you don't want to change.</p>
@@ -39,11 +38,10 @@ My Profile
             <input id="new-password" type="password" name="new-password" max="24">
           </div>
           <div class="form-field">
-            <label for="confirm-password">Confirm Password</label>
+            <label for="confirm-password">Confirm New Password</label>
             <input id="confirm-password" type="password" name="confirm-password" max="24">
           </div>
         </div>
-        -->
         <a class="btn-cancel-operation" href="{{ url_for('site.index') }}">Cancel</a>
         <button type="submit">Save</button>
       </form>

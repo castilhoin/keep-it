@@ -18,6 +18,9 @@ class User(db.Model, UserMixin):
     def verify_password(self, pwd):
         return check_password_hash(self.password, pwd)
 
+    def change_password(self, pwd):
+        self.password = generate_password_hash(pwd)
+
 class Notebook(db.Model):
     __tablename__ = "notebooks"
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
