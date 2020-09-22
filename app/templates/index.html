@@ -16,6 +16,7 @@ Dashboard
           {% for note in notes %}
             <li class="note-card">
               <div class="note-card-content">
+                <p class="note-card-title">{{ note.title }}</p>
                 <p>{{ note.content[:100] | replace('\n', '<br>') | safe }}</p>
                 <div class="note-card-info">
                   <p style="border-left: 2px solid {{ (notebooks | selectattr('id', 'equalto', note.notebook_id) | list | first).color }}; padding-left: 0.3em;">

@@ -325,6 +325,10 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
 }
+.section-notes .note-card-title {
+  font-weight: bold;
+  padding: 0 0 0.5em 0;
+}
 .section-notes .note-card .note-card-info {
   padding: 0.5em 0 0 0;
   color: var(--default-theme-gray-4);

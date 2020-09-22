@@ -160,11 +160,14 @@ def new_note(notebook):
         notebooks = Notebook.query.filter_by(user_id=current_user.id).order_by("name")
         current_notebook = Notebook.query.filter_by(id=notebook).first()
         if request.method == "POST":
+            title = request.form["title"]
+            if not title:
+                return render_template("error.html", notebooks=notebooks, message="Please, insert your note title")
             content = request.form["content"]
             if not content:
                 return render_template("error.html", notebooks=notebooks, message="Please, insert your note content")
             if current_notebook.user_id == current_user.id:
-                new_note = Note(content, datetime.utcnow(), current_user.id, notebook)
+                new_note = Note(title, content, datetime.utcnow(), current_user.id, notebook)
                 db.session.add(new_note)
                 db.session.commit()
                 return redirect(url_for("site.list_notes", notebook=current_notebook.id))
@@ -181,10 +184,14 @@ def edit_note(notebook, note):
         current_notebook = Notebook.query.filter_by(id=notebook).first()
         current_note = Note.query.filter_by(id=note).first()
         if request.method == "POST":
+            title = request.form["title"]
+            if not title:
+                return render_template("error.html", notebooks=notebooks, message="Please, insert your note title")
             content = request.form["content"]
             if not content:
                 return render_template("error.html", notebooks=notebooks, message="Please, insert your note content")
             if current_notebook.user_id == current_user.id:
+                current_note.title = title
                 current_note.content = content
                 current_note.modified_at = datetime.utcnow()
                 db.session.commit()
