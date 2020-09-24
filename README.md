@@ -6,7 +6,9 @@
 
 Keep It is a simple web application to manage notes and keep things organized. Here, the user can manage multiple notebooks, organize their ideas, and keep everything safe with an encrypted password.
 
-This is my **CS50's final project**. My first application developed in Python/Flask.
+This is my **CS50x's final project**. My first application developed in Python/Flask.
+
+![Keep It Desktop](https://raw.githubusercontent.com/castilhoin/keep-it/main/Layout.png)
 
 ### Tech Stack
 
